@@ -1,4 +1,6 @@
+
 export const data = [
+
     {
       question: "Which device is required for the Internet connection?",
       option1: "Modem",
@@ -39,4 +41,8 @@ export const data = [
       option4: "Pen Drive",
       ans: 2,
     },
+
+
   ];
+
+ 
