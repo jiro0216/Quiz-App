@@ -5,6 +5,9 @@ import './App.css';
 const App = () => {
   const [start, setStart] = useState(false);
 
+const goHome = () => setStart(false);
+
+
   return (
     <>
       {!start ? (
@@ -16,7 +19,7 @@ const App = () => {
           </button>
         </div>
       ) : (
-        <Quiz  />
+        <Quiz goHome={goHome} />
       )}
     </>
   );

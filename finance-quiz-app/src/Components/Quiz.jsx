@@ -1,15 +1,21 @@
 import React, { useState, useRef } from 'react'
 import './Quiz.css'
-import { data } from '../assets/data'
+import { data, data2, data3, data4 } from '../assets/data'
+import Result from './Result'
 
 const Quiz = ({ goHome }) => {
+    const dataSets = [data, data2, data3, data4];
+    const [batch, setBatch] = useState(0) 
+    const currentData = dataSets[batch];
     const [index, setIndex] = useState(0)
     const [lock, setLock] = useState(false)
     const [score, setScore] = useState(0)
     const [result, setResult] = useState(false)
+    
+    const quizTitle = currentData.title;
 
-    // Get current question and questions array
-    const questions = data
+    // Select questions based on batch
+    const questions = currentData.questions;
     const question = questions[index]
 
     // Refs for each option element
@@ -54,10 +60,10 @@ const Quiz = ({ goHome }) => {
 
     // Navigates back to home
     const home = () => {
-        goHome()
+        goHome();
     }
 
-    // Resets quiz to initial state
+    // Resets quiz to initial state for the current batch
     const reset = () => {
         setIndex(0)
         setLock(false)
@@ -68,9 +74,23 @@ const Quiz = ({ goHome }) => {
         })
     }
 
+    // Proceed to next batch (data2)
+    const continueToNextBatch = () => {
+        setBatch(prev => prev + 1);
+        setIndex(0)
+        setLock(false)
+        setScore(0)
+        setResult(false)
+        option_array.forEach(option => {
+            option.current.classList.remove("correct", "wrong")
+        })
+    }
+
+
+
     return (
         <div className='container'>
-            <h1>Quiz App</h1>
+            <h1>{quizTitle}</h1>
             <hr />
 
             {!result ? (
@@ -86,13 +106,13 @@ const Quiz = ({ goHome }) => {
                     <div className="index">{index + 1} of {questions.length} questions</div>
                 </>
             ) : (
-                <>
-                    <h2>You Scored {score} out of {questions.length}</h2>
-                    <div className="button-group">
-                        <button onClick={reset}>Try again</button>
-                        <button onClick={home}>Home</button>
-                    </div>
-                </>
+                <Result
+                    score={score}
+                    total={questions.length}
+                    onReset={score === questions.length && batch === 1 ? continueToNextBatch : reset}
+                    onHome={home}
+                    perfect={score === questions.length}
+                />
             )}
         </div>
     )
