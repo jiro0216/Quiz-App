@@ -51,7 +51,7 @@ export const data = {
 
 
 export const data2 = {
-  title: "Internet & Computer Basics",
+  title: "Internet & Computer Basics bro",
   questions: [
     {
       question: "Which device is required for the Internet connection?",

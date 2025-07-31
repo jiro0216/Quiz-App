@@ -109,7 +109,7 @@ const Quiz = ({ goHome }) => {
                 <Result
                     score={score}
                     total={questions.length}
-                    onReset={score === questions.length && batch === 1 ? continueToNextBatch : reset}
+                    onReset={score === questions.length && batch === 0 ? continueToNextBatch : reset}
                     onHome={home}
                     perfect={score === questions.length}
                 />
