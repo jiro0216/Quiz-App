@@ -86,8 +86,7 @@ const Quiz = ({ goHome }) => {
         })
     }
 
-
-
+    
     return (
         <div className='container'>
             <h1>{quizTitle}</h1>

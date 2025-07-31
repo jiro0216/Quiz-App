@@ -1,66 +1,77 @@
 import React, { useState } from 'react';
-import Quiz from './Components/Quiz';
 import './App.css';
 
-const App = () => {
+import Quiz from './Components/Quiz';
+import Article from './Components/Article';
+import CreateArticle from './Components/CreateArticle';
 
-  // State to manage quiz start
+import { BrowserRouter, Route, Routes, NavLink, Navigate } from 'react-router-dom';
+
+const App = () => {
   const [start, setStart] = useState(false);
   const goHome = () => setStart(false);
 
-
   return (
-    <>
-      {!start ? (
-        <div className="landing">
+    <BrowserRouter>
+      <div className="app">
 
-          <div className="container00">
+        {/* ✅ Navigation Bar */}
+        <nav className="navbar">
+          <NavLink to="/" className="nav-item">Home</NavLink>
+          <NavLink to="/new" className="nav-item">New Article</NavLink>
+          <NavLink to="/quiz" className="nav-item">Start Quiz</NavLink>
+        </nav>
 
-            <h1>Welcome to the Finance Quiz!</h1>
-            <p>Test your knowledge on finance basics. Click below to begin.</p>
-            <button className="start-btn" onClick={() => setStart(true)}>
-              Start Quiz
-            </button>
+        {/* ✅ Routes */}
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <div className="landing">
 
-          </div>
+                <div className="container00">
+                  <h1>Welcome to the Finance Quiz!</h1>
+                  <p>Test your knowledge on finance basics. Click below to begin.</p>
+                  <button className="start-btn" onClick={() => setStart(true)}>
+                    Start Quiz
+                  </button>
+                </div>
 
-          <div className="container01 ">
+                <div className="container01">
+                  <div>
+                    <h1>Welcome to the Finance Quiz!</h1>
+                    <p>Test your knowledge on finance basics. Click below to begin.</p>
+                  </div>
 
-            <div>
-              <h1>Welcome to the Finance Quiz!</h1>
-              <p>Test your knowledge on finance basics. Click below to begin.</p>
-            </div>
+                  <div>
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/en/9/9f/John_Wick_Keanu.jpeg"
+                      alt="Illustration"
+                    />
+                  </div>
+                </div>
 
-            <div>
-              <img src="https://upload.wikimedia.org/wikipedia/en/9/9f/John_Wick_Keanu.jpeg" />
-            </div>
+                <div className="container02">
+                  <h1>Article Title</h1>
+                  <h2>Subtitle</h2>
+                  <p>Lorem ipsum dolor sit amet...</p>
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/en/9/9f/John_Wick_Keanu.jpeg"
+                    alt="John Wick"
+                  />
+                  <p>More article content...</p>
+                </div>
+              </div>
+            }
+          />
 
-          </div>
-
-          <div className="container02">
-
-            <h1> Article Title</h1>
-            <h2>Subtitle</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-            <img src="https://upload.wikimedia.org/wikipedia/en/9/9f/John_Wick_Keanu.jpeg" alt="John Wick" />
-
-           <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-
-          </div>
-
-
-
-        </div>
-      ) : (
-        <Quiz goHome={goHome} />
-      )}
-    </>
+          <Route path="/new" element={<CreateArticle />} />
+          <Route path="/articles/:urlId" element={<Article />} />
+          <Route path="/quiz" element={<Quiz goHome={goHome} />} />
+          <Route path="/*" element={<Navigate to="/" />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 };
 
