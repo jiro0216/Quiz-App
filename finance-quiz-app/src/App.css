@@ -32,7 +32,7 @@ background-color: #f1f1f1;
   text-align: left;
   height: 50vh;
   background: #553f9a;
-  gap: 50px;
+  gap: 0px;
 
 }
 
@@ -41,9 +41,12 @@ background-color: #f1f1f1;
 
   font-size: 50px;
   color: #f1f1f1;
-  text-align: center;
-  margin: 0 20px;
-
+  text-align: left;
+  margin: 20px 0px;
+  word-wrap: break-word;       /* allow long words to wrap */
+  white-space: normal;         /* allow line breaks */
+  max-width: 70%;  
+  line-height: 1.2; 
 }
 
 .container01 p
@@ -51,7 +54,11 @@ background-color: #f1f1f1;
   font-size: 18px;
   color: #f1f1f1;
   text-align: auto;
-  margin: 0 20px;
+  margin: 0px;
+
+  word-wrap: break-word;       /* allow long words to wrap */
+  white-space: normal;         /* allow line breaks */
+  max-width: 50%;  
 }
 
 .container01 img {

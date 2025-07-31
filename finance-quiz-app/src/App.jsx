@@ -3,8 +3,9 @@ import Quiz from './Components/Quiz';
 import './App.css';
 
 const App = () => {
-  const [start, setStart] = useState(false);
 
+  // State to manage quiz start
+  const [start, setStart] = useState(false);
   const goHome = () => setStart(false);
 
 
